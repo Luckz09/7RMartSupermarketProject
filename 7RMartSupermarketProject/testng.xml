@@ -5,11 +5,13 @@
  <test thread-count="5" name="Test">
   <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testscript.ManageCategoryTest"/>
+    <class name="testscript.ManageNewsTest">
+  <!-- <methods><include name="verifyThatAdminCanReset"></include></methods> -->
+      <!--<class name="testscript.ManageCategoryTest"/>
       <class name="testscript.LoginTest">
       <methods>
       <include name="verifyLoginwithInvalidUserNameAndValidPassword"></include>
-      </methods>
+      </methods>-->
       </class>
       
     </classes>

@@ -18,14 +18,36 @@ public class HomePage {
 	@FindBy(xpath="//i[@class='ace-icon fa fa-power-off']") WebElement logoutButton;
 	@FindBy(xpath ="//a[@data-toggle='dropdown']") WebElement adminIcon;
 	
+	@FindBy(xpath = "//b[text()='7rmart supermarket']") WebElement prjTitle;
+
+	@FindBy(xpath = "//p[text()='Admin Users']/following::a[1]")
+	WebElement adminUserIcon;
+	@FindBy(xpath = "//p[text()='Manage Category']/ancestor::div[@class='small-box bg-info']/a")
+	WebElement manageCategoryIcon;
+	@FindBy(xpath ="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news']") WebElement manageNewsIcon;
 	
-	public void clickOnAdminButton()
-	{
+	public HomePage clickOnAdminButton(){
 		adminIcon.click();
+		return this;
 	}
-	public void clickOnLoginButton()
-	{
+	public LoginPage clickOnLogoutButton(){
 		logoutButton.click();
+		return new LoginPage(driver);
+	}
+	public boolean IsProjectTitleDisplayedOnLoginPage(){
+		return prjTitle.isDisplayed();
+	}
+	public AdminUserPage clickOnAdminIcon() {
+		adminUserIcon.click();
+		return new AdminUserPage(driver);
+	}
+	public ManageCategoryPage clickOnManageCategoryIcon() {
+		manageCategoryIcon.click();
+		return new ManageCategoryPage(driver);
+	}
+	public ManageNewsPage clickOnManageNewsIcon(){
+		manageNewsIcon.click();
+		return new ManageNewsPage(driver);
 	}
 
 }

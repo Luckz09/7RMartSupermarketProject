@@ -4,11 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
+
+import constant.Constants;
+import ultilities.PageUtility;
 
 public class AdminUserPage {
 
 	WebDriver driver;
+	PageUtility page=new PageUtility();
 
 	public AdminUserPage(WebDriver driver) {
 
@@ -16,8 +19,6 @@ public class AdminUserPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(xpath = "//p[text()='Admin Users']/following::a[1]")
-	WebElement adminUserIcon;
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	WebElement addNewUSerIcon;
 	@FindBy(xpath = "//input[@id='username']")
@@ -36,56 +37,66 @@ public class AdminUserPage {
 	WebElement dropDownListOnSearch;
 	@FindBy(xpath = "//button[@name='Search']")
 	WebElement searchButton;
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-warning']")
+	WebElement resetIcon;
 
-	@FindBy(xpath = "//td[text()='user1234567']")
-	WebElement addedUserName;
 	@FindBy(xpath = "//td[text()='user1234567']")
 	WebElement searchedUserName;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement alertMessage;
 
-	public void clickOnAdminIcon() {
-		adminUserIcon.click();
-	}
+	
 
-	public void clickOnAddNewUserIcon() {
+	public AdminUserPage clickOnAddNewUserIcon() {
 		addNewUSerIcon.click();
+		return this;
 	}
 
-	public void enterNewUserNameOnUSerNameField(String newUserName) {
+	public AdminUserPage enterNewUserNameOnUSerNameField(String newUserName) {
 		userNameField.sendKeys(newUserName);
+		return this;
 	}
 
-	public void enterNewPasswordOnPasswordField(String newPassword) {
+	public AdminUserPage enterNewPasswordOnPasswordField(String newPassword) {
 		passwordField.sendKeys(newPassword);
+		return this;
 	}
 
-	public void selectUserTypeFromDropDownList() {
-		Select select = new Select(dropDownList);
-		select.selectByVisibleText("Staff");
+	public AdminUserPage selectUserTypeFromDropDownList() {
+		page.selectDropDownWithVisibleText(dropDownList,Constants.USERTYPEDROPDOWN);
+		return this;
 	}
 
-	public void clickOnSaveButton() {
+	public AdminUserPage clickOnSaveButton() {
 		saveButton.click();
+		return this;
 	}
 
-	public void clickOnSearchIcon() {
+	public AdminUserPage clickOnSearchIcon() {
 		searchIcon.click();
+		return this;
 	}
 
-	public void enterUserNameOnUserNameFiledInSearch() {
-		userNameFieldOnSerach.sendKeys("user1234567");
+	public AdminUserPage enterUserNameOnUserNameFiledInSearch() {
+		userNameFieldOnSerach.sendKeys(Constants.SEARCHUSERNAMEBYADMIN);
+		return this;
 	}
 
-	public void selectUserTypefromDropDownInSearch() {
-		Select select = new Select(dropDownListOnSearch);
-		select.selectByVisibleText("Staff");
+	public AdminUserPage selectUserTypefromDropDownInSearch() {
+		page.selectDropDownWithVisibleText(dropDownListOnSearch,Constants.USERTYPEDROPDOWN);
+		return this;
 	}
 
-	public void clickOnSearchButton() {
+	public AdminUserPage clickOnSearchButton() {
 		searchButton.click();
+		return this;
 	}
-
-	public String getUserNameFromAddedList() {
-		return addedUserName.getText();
+	public AdminUserPage clickOnResetIcon() {
+		resetIcon.click();
+		return this;
+	}
+	public boolean getAlertMessage() {
+		return alertMessage.isDisplayed();
 	}
 
 	public String getUserNameFromSeachedList() {

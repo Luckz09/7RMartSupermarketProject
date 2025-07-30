@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import net.bytebuddy.asm.MemberSubstitution.FieldValue;
+import constant.Constants;
+
 
 public class ManageNewsPage {
 	
@@ -17,7 +18,7 @@ public class ManageNewsPage {
 		PageFactory.initElements(driver, this);
 		}
 	
-	@FindBy(xpath ="//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news']") WebElement moreInfo;
+	
 	
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']") WebElement addIcon;
 	@FindBy(xpath ="//textarea[@name='news']") WebElement enterNewsArea;
@@ -30,33 +31,36 @@ public class ManageNewsPage {
 	@FindBy(xpath = "//td[text()='Testing News Area']") WebElement searchedNewsfield;
 	
 	
-	public void clickMoreInfoIcon()
-	{
-		moreInfo.click();
-	}
-	public void clickOnAddIcon()
+	
+	public ManageNewsPage clickOnAddIcon()
 	{
 		addIcon.click();
+		return this;
 	}
-	public void enteringNewNews()
+	public ManageNewsPage enteringNewNews()
 	{
 		enterNewsArea.sendKeys("Testing News Area");
+		return this;
 	}
-	public void clickOnSaveButton()
+	public ManageNewsPage clickOnSaveButton()
 	{
 		saveButton.click();
+		return this;
 	}
-	public void clickOnSearchIcon()
+	public ManageNewsPage clickOnSearchIcon()
 	{
 		searchIcon.click();
+		return this;
 	}
-	public void enteringNewsTitleOnSearchNewsField()
+	public ManageNewsPage enteringNewsTitleOnSearchNewsField()
 	{
-		searchNewsField.sendKeys("Testing News Area");
+		searchNewsField.sendKeys(Constants.NEWSCONTENT);
+		return this;
 	}
-	public void clickOnSearchButton()
+	public ManageNewsPage clickOnSearchButton()
 	{
 		searchButton.click();
+		return this;
 	}
 	public boolean isCreatedSuccessfullyAlertDisplayed()
 	{
